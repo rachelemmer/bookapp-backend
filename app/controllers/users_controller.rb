@@ -7,6 +7,11 @@ class UsersController < ApplicationController
         render json: @users
     end 
 
+    def show
+        @user = User.find(params[:id])
+        render json: @user
+    end
+
     def favorite_books
         user = User.find(@user_id)
         render json: user.books
@@ -19,5 +24,10 @@ class UsersController < ApplicationController
         )
         render json: @user
     end 
+
+    def destroy
+        @user = User.find(params[:id])
+        @user.destroy
+    end
 
 end

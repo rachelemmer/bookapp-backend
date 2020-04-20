@@ -7,6 +7,10 @@ class BooksController < ApplicationController
         render json: { books: @books }
     end
 
+    def show
+        @book = Book.find(params[:id])
+        render json: @book
+    end
 
     def create
         @book = Book.create(
@@ -17,5 +21,10 @@ class BooksController < ApplicationController
             user_id: @user_id
         )
         render json: @book, include: [:user]
+    end
+
+    def destroy
+        @book = Book.find(params[:id])
+        @book.destroy
     end
 end
